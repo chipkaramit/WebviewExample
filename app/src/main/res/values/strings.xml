@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Ratan</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="url_not_configured">Something went wrong</string>
+</resources>
