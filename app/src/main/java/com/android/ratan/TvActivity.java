@@ -12,7 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class TvActivity extends AppCompatActivity {
 
     WebView webView;
     String strURL;
@@ -25,19 +25,19 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog = new ProgressDialog(TvActivity.this);
 
         webView = findViewById(R.id.web_view);
         strURL = "http://ratan.club/";
 
-            progressDialog.setMessage(getResources().getString(R.string.please_wait));
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-            webView.setWebViewClient(new myWebViewClient());
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.getSettings().setLoadsImagesAutomatically(true);
-            webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-            webView.loadUrl(strURL);
+        progressDialog.setMessage(getResources().getString(R.string.please_wait));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        webView.setWebViewClient(new myWebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.loadUrl(strURL);
 
 
     }
