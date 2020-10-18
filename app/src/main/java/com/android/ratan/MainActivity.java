@@ -1,13 +1,21 @@
 package com.android.ratan;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.webkit.URLUtil;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -28,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(MainActivity.this);
 
         webView = findViewById(R.id.web_view);
-        strURL = "http://ratan.club/";
+        strURL = "http://soumitranath.in/projects/ratan/";
 
             progressDialog.setMessage(getResources().getString(R.string.please_wait));
             progressDialog.setCancelable(false);
@@ -51,9 +59,42 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             // TODO Auto-generated method stub
-            view.loadUrl(url);
+//            view.loadUrl(url);
+            if( URLUtil.isNetworkUrl(url) )
+            {
+                return false;
+            }
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }catch(ActivityNotFoundException e)
+            {
+                Log.e("Amit",e.toString());
+                Toast.makeText(MainActivity.this,"No app found to execute task",Toast.LENGTH_LONG).show();
+            }
             return true;
 
+        }
+        @RequiresApi(Build.VERSION_CODES.N)
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request)
+        {
+            String url=request.getUrl().toString();
+            if( URLUtil.isNetworkUrl(url) )
+            {
+                return false;
+            }
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }catch(ActivityNotFoundException e)
+            {
+                Log.e("Amit",e.toString());
+                Toast.makeText(MainActivity.this,"No app found to execute task",Toast.LENGTH_LONG).show();
+            }
+            return true;
         }
 
         @Override
