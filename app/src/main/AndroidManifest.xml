@@ -4,6 +4,8 @@
     package="com.android.ratan">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -14,11 +16,11 @@
 
     <application
         android:allowBackup="true"
+        android:banner="@drawable/playstore_icon"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:banner="@drawable/playstore_icon"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
 
@@ -26,7 +28,6 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
